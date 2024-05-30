@@ -9,8 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.util.*;
-import java.io.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 @Component
 public class JWTGenerator {
@@ -18,7 +19,8 @@ public class JWTGenerator {
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
         Date current = new Date();
-        Date expireDate = new Date(current.getTime() + SecurityConstant.JWT_EXPIRATION);
+//        Date expireDate = new Date(current.getTime() + SecurityConstant.JWT_EXPIRATION);
+        Date expireDate = Date.from(Instant.now().plus(365, ChronoUnit.DAYS)); // 365 Days
 
         String token =Jwts.builder()
                 .setSubject(username)
@@ -44,7 +46,6 @@ public class JWTGenerator {
             Jwts.parserBuilder().setSigningKey(SecurityConstant.JWT_SECRET).build().parseClaimsJws(token);
             return true;
         }catch (Exception e) {
-            System.err.println("ERROR:  "+e.getMessage());
             return false;
         }
     }

@@ -9,13 +9,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
 
 
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
@@ -32,12 +29,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String token = getJWTFromRequest(request);
-        System.err.println(token);
         if(StringUtils.hasText(token) && jwtGenerator.validToken(token)){
             String username = jwtGenerator.getUsername(token);
             System.err.println(username);
             UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
-            System.err.println(userDetails.getUsername() +" " + userDetails.getAuthorities());
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userDetails ,null,
                             userDetails.getAuthorities());

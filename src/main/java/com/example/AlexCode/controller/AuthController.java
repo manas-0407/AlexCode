@@ -62,7 +62,6 @@ public class AuthController {
             String token = jwtGenerator.generateToken(authentication);
             return ResponseEntity.ok().body(new AuthResponseDTO(token));
         }catch (Exception e){
-            System.err.println(e.getMessage());
             return ResponseEntity.badRequest().body(new AuthResponseDTO("BAD CREDENTIALS"));
         }
 

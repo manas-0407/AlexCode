@@ -9,7 +9,6 @@ public class GeneralRoutes {
 
     @GetMapping("/get")
     public ResponseEntity<String> get(){
-        System.err.println("Inside get");
         return ResponseEntity.ok("Hello Manas");
     }
 

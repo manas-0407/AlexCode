@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +40,11 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests( auth -> auth
                 .requestMatchers("/get").authenticated()
-                .requestMatchers("/api/auth/**").permitAll())
+                .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/contest/**").authenticated()
+                        .requestMatchers("/contest/running" , "/contest/upcoming").permitAll()
+                        .requestMatchers("/question/**").authenticated()
+                        .requestMatchers("/user/**").authenticated())
                 .httpBasic(Customizer.withDefaults());
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter() , UsernamePasswordAuthenticationFilter.class);
