@@ -37,14 +37,14 @@ public class ContestRoute {
     }
 
     @GetMapping(value = "/{contest_id}/question")
-    public List<QuestionEntity> getContestAllQuestion(@PathVariable(value = "contest_id") String contest_id){
+    public List<QuestionEntity> getContestAllQuestion(@PathVariable(value = "contest_id") String contest_id) throws JsonProcessingException {
 
         return contestService.getContestALLQuestion(contest_id);
     }
 
     @GetMapping(value = "/{contest_id}/question/{question_id}")
     public ResponseEntity<QuestionEntity> getContestQuestionId(@PathVariable(value = "contest_id") String contest_id,
-                                                               @PathVariable(value = "question_id") String question_id){
+                                                               @PathVariable(value = "question_id") String question_id) throws JsonProcessingException {
 
         return ResponseEntity.ok(contestService.getContestQuestionById(contest_id,question_id));
     }
