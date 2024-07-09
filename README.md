@@ -318,7 +318,7 @@ Code On Cloud is a powerful backend platform designed to provide features like C
  - Repo for code execution server, currently deployed in AWS.
 ## Screenshots
 
-![Demo Screenshot](<img src="imgs/create.png">)
-![Demo Screenshot](<img src="imgs/leaderb.png">)
-![Demo Screenshot](<img src="imgs/ques.png">)
+![Demo Screenshot](https://github.com/manas-0407/Code-On-Cloud/blob/main/imgs/create.png)
+![Demo Screenshot](https://github.com/manas-0407/Code-On-Cloud/blob/main/imgs/leaderb.png)
+![Demo Screenshot](https://github.com/manas-0407/Code-On-Cloud/blob/main/imgs/ques.png)
 
